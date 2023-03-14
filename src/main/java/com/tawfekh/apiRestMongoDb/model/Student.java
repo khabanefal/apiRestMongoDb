@@ -2,11 +2,11 @@ package com.tawfekh.apiRestMongoDb.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @Data
@@ -14,8 +14,9 @@ import java.util.List;
 public class Student {
    @Id
     private String id;
-    private String fistName;
+    private String firstName;
     private String lastName;
+    @Indexed(unique = true) //from MongoDB
     private String email;
     private GenderEnum genderEnum;
     private Address address;
@@ -24,7 +25,7 @@ public class Student {
     private LocalDateTime created;
 
 
-    public Student(String fistName,
+    public Student(String firstName,
                 String lastName,
                 String email,
                 GenderEnum genderEnum,
@@ -32,7 +33,7 @@ public class Student {
                 List<String> favouriteSubjects,
                 BigDecimal totalSpentInBooks,
                 LocalDateTime created) {
-  this.fistName = fistName;
+  this.firstName = firstName;
   this.lastName = lastName;
   this.email = email;
   this.genderEnum = genderEnum;
