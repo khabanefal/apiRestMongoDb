@@ -1,0 +1,2 @@
+run mongoDB to docker
+docker compose -f docker-compose.yaml up
