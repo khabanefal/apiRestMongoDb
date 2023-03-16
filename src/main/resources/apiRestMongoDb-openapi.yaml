@@ -1,0 +1,62 @@
+openapi: "3.0.3"
+info:
+  title: "apiRestMongoDb API"
+  description: "apiRestMongoDb API"
+  version: "1.0.0"
+servers:
+  - url: "https://apiRestMongoDb"
+paths:
+  /api/v1/students:
+    get:
+      summary: "GET api/v1/students"
+      operationId: "fetchAllStudents"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':  # replace */* to application/json to avoid HttpMessageNotWritableException: No converter for [...] with preset Content-Type 'null'] with OpenApi Spring generator
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Student"
+components:
+  schemas:
+    Address:
+      type: "object"
+      properties:
+        country:
+          type: "string"
+        zipCode:
+          type: "string"
+        city:
+          type: "string"
+    BigDecimal:
+      type: "object"
+      properties: { }
+    Student:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        firstName:
+          type: "string"
+        lastName:
+          type: "string"
+        email:
+          type: "string"
+        genderEnum:
+          type: "string"
+          enum:
+            - "MALE"
+            - "FEMELE"
+        address:
+          $ref: "#/components/schemas/Address"
+        favouriteSubjects:
+          type: "array"
+          items:
+            type: "string"
+        totalSpentInBooks:
+          $ref: "#/components/schemas/BigDecimal"
+        created:
+          type: "string"
+          format: "date-time"
