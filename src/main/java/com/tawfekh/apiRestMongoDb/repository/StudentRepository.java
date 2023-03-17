@@ -10,7 +10,6 @@ import java.util.Optional;
 @Repository
 public interface StudentRepository extends MongoRepository<Student, String> {
     Optional<Student> findStudentByEmail(String email);
-
     @Query("{'firstName' :?0}")    //SQL Equivalent : SELECT * FROM Student WHERE ID=?
     Optional<Student> getBookByFirstName(String firstName);
 }
