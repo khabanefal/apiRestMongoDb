@@ -19,6 +19,10 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	mapstructVersion = "1.4.2.Final"
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -29,27 +33,30 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
 	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.2'
 
+	//mapstruct
+	annotationProcessor group: 'org.mapstruct', name: 'mapstruct', version: '1.4.2.Final'
+	implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.4.2.Final'
+	annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.4.2.Final'
+	implementation group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.4.2.Final'
+	// If we are using mapstruct in test code
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 // generates the spring controller interfaces from openapi spec in src/main/resources/service.yaml
 openApiGenerate {
 	generatorName = "spring"
-	//inputSpec = "${project.rootDir}/src/main/resources/apiRestMongoDb-openapi.yaml".toString()
 	inputSpec = "$projectDir/src/main/resources/apiRestMongoDb-openapi.yaml"
 	outputDir = "$buildDir/generated"
-	//apiPackage = "org.tawfekh.mongodbservice.api"
-	//invokerPackage = "org.tawfekh.mongodbservice"
-	//modelPackage = "com.tawfekh.apiRestMongoDb.model"
-	//modelPackage = "org.tawfekh.mongodbservice.models"
 	configOptions = [
 			apiPackage: "org.tawfekh.mongodbservice.api",
 			invokerPackage: "org.tawfekh.mongodbservice",
 			modelPackage: "org.tawfekh.mongodbservice.models.api.resource",
 			dateLibrary: "java8",
 			interfaceOnly: "true",
-			//useBeanValidation: "true",
-			//skipDefaultInterface: "true",
+			useBeanValidation: "true",
+			skipDefaultInterface: "true",
 	]
 }
 
