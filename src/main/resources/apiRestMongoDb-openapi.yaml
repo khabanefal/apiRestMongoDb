@@ -8,6 +8,8 @@ servers:
 paths:
   /api/v1/students:
     get:
+      tags:  # use this to generate StudentApi instead ApiApi
+        - student
       summary: "GET api/v1/students"
       operationId: "fetchAllStudents"
       responses:

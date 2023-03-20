@@ -50,6 +50,7 @@ openApiGenerate {
 	inputSpec = "$projectDir/src/main/resources/apiRestMongoDb-openapi.yaml"
 	outputDir = "$buildDir/generated"
 	configOptions = [
+			useTags: "true",
 			apiPackage: "org.tawfekh.mongodbservice.api",
 			invokerPackage: "org.tawfekh.mongodbservice",
 			modelPackage: "org.tawfekh.mongodbservice.models.api.resource",
