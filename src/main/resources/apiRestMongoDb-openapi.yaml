@@ -9,18 +9,42 @@ paths:
   /api/v1/students:
     get:
       tags:  # use this to generate StudentApi instead ApiApi
-        - student
+        - "Student"
       summary: "GET api/v1/students"
-      operationId: "fetchAllStudents"
+      description: "get all student from db"
+      operationId: getAllStudents
       responses:
         "200":
           description: "OK"
           content:
-            'application/json':  # replace */* to application/json to avoid HttpMessageNotWritableException: No converter for [...] with preset Content-Type 'null'] with OpenApi Spring generator
+            application/json:  # replace */* to application/json to avoid HttpMessageNotWritableException: No converter for [...] with preset Content-Type 'null'] with OpenApi Spring generator
               schema:
-                type: "array"
+                type: array
                 items:
                   $ref: "#/components/schemas/Student"
+        "400":
+          description: Bad Request
+  /api/v1/AddStudent:
+    post:
+      tags:
+        - "Student"
+      summary: "Add a Student"
+      description: "Add a single Student"
+      operationId: "addStudent"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: # replace */* to application/json to avoid HttpMessageNotWritableException: No converter for [...] with preset Content-Type 'null'] with OpenApi Spring generator
+              schema:
+                  $ref: "#/components/schemas/Student"
+        "400":
+          description: Bad Request
 components:
   schemas:
     Address:

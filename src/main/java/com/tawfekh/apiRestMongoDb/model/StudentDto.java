@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@Document
-public class Student {
+@Document(value = "students")
+public class StudentDto {
    @Id
     private String id;
     private String firstName;
@@ -25,14 +25,14 @@ public class Student {
     private LocalDateTime created;
 
 
-    public Student(String firstName,
-                String lastName,
-                String email,
-                GenderEnum genderEnum,
-                Address address,
-                List<String> favouriteSubjects,
-                BigDecimal totalSpentInBooks,
-                LocalDateTime created) {
+    public StudentDto(String firstName,
+                      String lastName,
+                      String email,
+                      GenderEnum genderEnum,
+                      Address address,
+                      List<String> favouriteSubjects,
+                      BigDecimal totalSpentInBooks,
+                      LocalDateTime created) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.email = email;
